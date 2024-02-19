@@ -78,6 +78,7 @@ exports.categoryPageDetails = async (req, res) => {
     const categoriesExceptSelected = await Category.find({
       _id: { $ne: categoryId },
     })
+    // console.log("yahan tak chal gya")
     let differentCategory = await Category.findOne(
       categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
         ._id
@@ -87,7 +88,7 @@ exports.categoryPageDetails = async (req, res) => {
         match: { status: "Published" },
       })
       .exec()
-    console.log()
+    // console.log("yahan tak chal gya")
     // Get top-selling courses across all categories
     const allCategories = await Category.find()
       .populate({
