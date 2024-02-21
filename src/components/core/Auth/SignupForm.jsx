@@ -23,7 +23,7 @@ function SignupForm() {
     password: "",
     confirmPassword: "",
   })
-
+  const [passwordClicked,setpasswordClicked]=useState(false);
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
@@ -36,10 +36,26 @@ function SignupForm() {
       [e.target.name]: e.target.value,
     }))
   }
+   //handle constraints
+   function valid_pass(pass)
+   {
+     const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*()\-+=^])\S{8,15}$/;
+     return passwordPattern.test(pass);
+   }
+   const lowercaseCheck = pass => /^(?=.*[a-z]).+$/.test(pass);
+   const uppercaseCheck = pass => /^(?=.*[A-Z]).+$/.test(pass);
+   const digitCheck = pass => /^(?=.*\d).+$/.test(pass);
+   const symbolCheck = pass => /^(?=.*\W).+$/.test(pass);
+   const lengthCheck = pass => pass.length >= 8 && pass.length <= 15;
 
   // Handle Form Submission
   const handleOnSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    if(!valid_pass(password))
+    {
+      toast.error("Password doesn't meet required constraints")
+      return
+    }
 
     if (password !== confirmPassword) {
       toast.error("Passwords Do Not Match")
@@ -142,6 +158,7 @@ function SignupForm() {
               name="password"
               value={password}
               onChange={handleOnChange}
+              onClick={()=>setpasswordClicked(true)}
               placeholder="Enter Password"
               className="form-style w-full !pr-10"
             />
@@ -181,6 +198,84 @@ function SignupForm() {
             </span>
           </label>
         </div>
+        {
+          passwordClicked && 
+          <div class="mt-5 justify-start items-center flex-wrap gap-4 flex">
+            
+            {lowercaseCheck(password) && 
+              <div class="flex gap-2 items-center">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="text-caribbeangreen-200" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"></path>
+              </svg>
+              <p class="text-caribbeangreen-200 transition-all duration-100">one lowercase charater</p>
+            </div>
+            }
+            {
+              !lowercaseCheck(password) &&
+              <div class="flex gap-2 items-center">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="text-pink-400" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"></path>
+                </svg>
+                <p class="text-pink-400 transition-all duration-100">one lowercase charater</p></div>
+            }
+            {uppercaseCheck(password) && 
+              <div class="flex gap-2 items-center">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="text-caribbeangreen-200" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"></path>
+              </svg>
+              <p class="text-caribbeangreen-200 transition-all duration-100">one uppercase charater</p>
+            </div>
+            }
+            {
+              !uppercaseCheck(password) &&
+              <div class="flex gap-2 items-center">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="text-pink-400" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"></path>
+                </svg>
+                <p class="text-pink-400 transition-all duration-100">one uppercase charater</p></div>
+            }
+            {digitCheck(password) && 
+              <div class="flex gap-2 items-center">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="text-caribbeangreen-200" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"></path>
+              </svg>
+              <p class="text-caribbeangreen-200 transition-all duration-100">one digit</p>
+            </div>
+            }
+            {
+              !digitCheck(password) &&
+              <div class="flex gap-2 items-center">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="text-pink-400" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"></path>
+                </svg>
+                <p class="text-pink-400 transition-all duration-100">one digit</p></div>
+            }
+            {symbolCheck(password) && 
+              <div class="flex gap-2 items-center">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="text-caribbeangreen-200" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"></path>
+              </svg>
+              <p class="text-caribbeangreen-200 transition-all duration-100">one symbol</p>
+            </div>
+            }
+            {
+              !symbolCheck(password) &&
+              <div class="flex gap-2 items-center">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="text-pink-400" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"></path>
+                </svg>
+                <p class="text-pink-400 transition-all duration-100">one symbol</p></div>
+            }
+            {lengthCheck(password) && 
+              <div class="flex gap-2 items-center">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="text-caribbeangreen-200" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"></path>
+              </svg>
+              <p class="text-caribbeangreen-200 transition-all duration-100">length 8-15</p>
+            </div>
+            }
+            {
+              !lengthCheck(password) &&
+              <div class="flex gap-2 items-center">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="text-pink-400" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"></path>
+                </svg>
+                <p class="text-pink-400 transition-all duration-100">length 8-15</p></div>
+            }
+
+         
+          </div>
+        }
         <button
           type="submit"
           className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900"
