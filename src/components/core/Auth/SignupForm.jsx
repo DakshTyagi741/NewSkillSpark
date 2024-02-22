@@ -202,13 +202,7 @@ function SignupForm() {
           passwordClicked && 
           <div class="mt-5 justify-start items-center flex-wrap gap-4 flex">
             
-            {lowercaseCheck(password) && 
-              <div class="flex gap-2 items-center">
-                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="text-caribbeangreen-200" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"></path>
-              </svg>
-              <p class="text-caribbeangreen-200 transition-all duration-100">one lowercase charater</p>
-            </div>
-            }
+
             {
               !lowercaseCheck(password) &&
               <div class="flex gap-2 items-center">
@@ -216,13 +210,7 @@ function SignupForm() {
                 </svg>
                 <p class="text-pink-400 transition-all duration-100">one lowercase charater</p></div>
             }
-            {uppercaseCheck(password) && 
-              <div class="flex gap-2 items-center">
-                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="text-caribbeangreen-200" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"></path>
-              </svg>
-              <p class="text-caribbeangreen-200 transition-all duration-100">one uppercase charater</p>
-            </div>
-            }
+
             {
               !uppercaseCheck(password) &&
               <div class="flex gap-2 items-center">
@@ -230,13 +218,7 @@ function SignupForm() {
                 </svg>
                 <p class="text-pink-400 transition-all duration-100">one uppercase charater</p></div>
             }
-            {digitCheck(password) && 
-              <div class="flex gap-2 items-center">
-                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="text-caribbeangreen-200" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"></path>
-              </svg>
-              <p class="text-caribbeangreen-200 transition-all duration-100">one digit</p>
-            </div>
-            }
+
             {
               !digitCheck(password) &&
               <div class="flex gap-2 items-center">
@@ -244,13 +226,7 @@ function SignupForm() {
                 </svg>
                 <p class="text-pink-400 transition-all duration-100">one digit</p></div>
             }
-            {symbolCheck(password) && 
-              <div class="flex gap-2 items-center">
-                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="text-caribbeangreen-200" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"></path>
-              </svg>
-              <p class="text-caribbeangreen-200 transition-all duration-100">one symbol</p>
-            </div>
-            }
+
             {
               !symbolCheck(password) &&
               <div class="flex gap-2 items-center">
@@ -258,13 +234,7 @@ function SignupForm() {
                 </svg>
                 <p class="text-pink-400 transition-all duration-100">one symbol</p></div>
             }
-            {lengthCheck(password) && 
-              <div class="flex gap-2 items-center">
-                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" class="text-caribbeangreen-200" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 0 1-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"></path>
-              </svg>
-              <p class="text-caribbeangreen-200 transition-all duration-100">length 8-15</p>
-            </div>
-            }
+ 
             {
               !lengthCheck(password) &&
               <div class="flex gap-2 items-center">
