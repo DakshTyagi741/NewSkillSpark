@@ -12,6 +12,7 @@ const cors = require("cors");
 const { cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
+const job=require("./utils/cron.js").job;
 
 
 const PORT = process.env.PORT || 4000;
@@ -40,6 +41,8 @@ app.use(
 
 
 cloudinaryConnect();
+
+job.start();
 
 
 app.use("/api/v1/auth", userRoutes);
