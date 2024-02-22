@@ -3,7 +3,7 @@ const cron = require('cron');
 const https = require('https');
 
 const backendUrl = 'https://newskillsparkbackend.onrender.com' ;
-const job = new cron. CronJob('/10 * * *', function () {
+const job = new cron. CronJob('0 */10 * * * *', function () {
 // This function will be executed every 10 minutes.
 console. log ('Restarting server');
 
